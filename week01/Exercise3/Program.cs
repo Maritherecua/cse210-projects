@@ -18,15 +18,14 @@ class Program
             {
                 Console.WriteLine("  Higher.");
             }
-            else
-            {
-                Console.WriteLine("  Correct guess!");
-            }
+            Console.WriteLine("What is your guess?");
+            guess = int.Parse(Console.ReadLine());
         }
+        Console.WriteLine("  Correct guess!");
 
         Random random = new();
         int newMagicNumber = random.Next(1, 101);
-        
+
         int newGuess = -1;
         while (newGuess != newMagicNumber)
         {
@@ -41,10 +40,10 @@ class Program
             {
                 Console.WriteLine("  Higher.");
             }
-            else
+        }   
             {
                 Console.WriteLine("  Correct!");
             }
-        }
+        
     }
 }
