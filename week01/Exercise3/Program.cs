@@ -18,7 +18,7 @@ class Program
             {
                 Console.WriteLine("  Higher.");
             }
-            Console.WriteLine("What is your guess?");
+            Console.WriteLine("What is your guess? (enter 0 to quit)");
             guess = int.Parse(Console.ReadLine());
         }
         Console.WriteLine("  Correct guess!");
