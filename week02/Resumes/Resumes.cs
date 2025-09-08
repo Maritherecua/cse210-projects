@@ -10,7 +10,7 @@
             Console.WriteLine("Jobs:");
             foreach (var job in _jobs)
 
-            {
+            {   //calls the display method from the job class
                 job.Display();
             }
         }
