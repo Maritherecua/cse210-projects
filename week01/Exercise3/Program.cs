@@ -40,10 +40,7 @@ class Program
             {
                 Console.WriteLine("  Higher.");
             }
-        }   
-            {
-                Console.WriteLine("  Correct!");
-            }
-        
+        }
+        Console.WriteLine("  Correct!");
     }
 }
