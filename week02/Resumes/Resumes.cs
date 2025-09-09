@@ -8,10 +8,11 @@
         {
             Console.WriteLine($"Name: {_name}");
             Console.WriteLine("Jobs:");
+            // Display each job's information
             foreach (var job in _jobs)
 
-            {   //calls the display method from the job class
-                job.Display();
-            }
+        {   //calls the display method from the job class
+            job.Display();
+        }
         }
     }
