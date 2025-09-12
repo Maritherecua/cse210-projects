@@ -20,13 +20,13 @@ class Program
         bool exit = false;
         while (!exit)
         {
-            Console.WriteLine("Menu Options:");
+            Console.WriteLine("Menu: Select an option (1-5): ");
             Console.WriteLine("1. Write a new journal entry");
             Console.WriteLine("2. Display journal entries");
             Console.WriteLine("3. Load journal from file");
             Console.WriteLine("4. Save journal to file");
             Console.WriteLine("5. Exit");
-            Console.Write("Select an option (1-5): ");
+
             string choice = Console.ReadLine();
 
             switch (choice)
