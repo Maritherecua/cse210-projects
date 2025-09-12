@@ -8,6 +8,9 @@
 // Shows a menu to the user to select from the features above
 // Uses System, System.IO, System.Collections.Generic, System.Linq
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 class Program
 {
@@ -64,6 +67,8 @@ class Program
                                 loadedEntries.Add(entry);
                             }
                         }
+                        //string filename = loadFilename + ".txt";
+                        string journalContent = string.Join(Environment.NewLine, loadedEntries.Select(e => $"{e.Date}|{e.Prompt}|{e.Response}"));
                         journal.LoadEntries(loadedEntries);
                         Console.WriteLine("Journal loaded successfully.");
                     }
