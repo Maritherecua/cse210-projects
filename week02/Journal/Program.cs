@@ -60,7 +60,8 @@ class Program
                             var parts = line.Split('|');
                             if (parts.Length == 3)
                             {
-                                DateTime date = DateTime.Parse(parts[0]);
+                                // Use ISO 8601 format for robust date parsing
+                                DateTime date = DateTime.ParseExact(parts[0], "o", null);
                                 string prompt = parts[1];
                                 string resp = parts[2];
                                 Entry entry = new Entry(prompt, resp) { Date = date };
