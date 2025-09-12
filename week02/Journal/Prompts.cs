@@ -27,7 +27,6 @@ public List<string> GetPrompts()
     return prompts;
 }
 
-// Example usage to avoid 'declared but never used' error
 public static void PrintPrompts()
 {
     var prompts = new PromptProvider().GetPrompts();
