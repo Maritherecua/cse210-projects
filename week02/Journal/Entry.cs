@@ -3,21 +3,21 @@
 using System;
 public class Entry
 {
-    public string Prompt { get; set; }
-    public string Response { get; set; }
-    public DateTime Date { get; set; }
+    public string _prompt { get; set; }
+    public string _response { get; set; }
+    public DateTime _date { get; set; }
 
     public void DisplayEntry()
     {
-        Console.WriteLine($"Date: {Date.ToShortDateString()}");
-        Console.WriteLine($"Prompt: {Prompt}");
-        Console.WriteLine($"Response: {Response}");
+        Console.WriteLine($"Date: {_date.ToShortDateString()}");
+        Console.WriteLine($"Prompt: {_prompt}");
+        Console.WriteLine($"Response: {_response}");
     }
 
     public Entry(string prompt, string response)
     {
-        Prompt = prompt;
-        Response = response;
-        Date = DateTime.Now;
+        _prompt = prompt;
+        _response = response;
+        _date = DateTime.Now;
     }
 }

@@ -44,7 +44,7 @@ class Program
                     Console.WriteLine($"Prompt: {selectedPrompt}");
                     Console.Write("Your response: ");
                     string response = Console.ReadLine();
-                    journal.AddEntry(selectedPrompt, response);
+        journal.AddEntry(selectedPrompt, response);
                     break;
                 case "2":
                     journal.DisplayEntries();
@@ -57,22 +57,22 @@ class Program
                         var _lines = System.IO.File.ReadAllLines(loadFilename);
                         foreach (var line in _lines)
                         {
-                            var _parts = line.Split('|');
-                            if (_parts.Length == 3)
+                            var parts = line.Split('|');
+                            if (parts.Length == 3)
                             {
-                                DateTime date;
+                                DateTime _date;
                                 // Try to parse using the ISO 8601 format (used when saving)
-                                if (!DateTime.TryParseExact(_parts[0], "o", null, System.Globalization.DateTimeStyles.None, out date))
+                                if (DateTime.TryParseExact(parts[0], "o", null, System.Globalization.DateTimeStyles.None, out _date))
                                 {
-                                    // Fallback to default parse if needed
-                                    if (!DateTime.TryParse(_parts[0], out date))
-                                    {
-                                        date = DateTime.Now; // fallback to now if parsing fails
-                                    }
+                                    // Successfully parsed with ISO 8601 format
                                 }
-                                string prompt = _parts[1];
-                                string resp = _parts[2];
-                                Entry entry = new Entry(prompt, resp) { Date = date };
+                                else if (!DateTime.TryParse(parts[0], out _date))
+                                {
+                                    _date = DateTime.Now; // fallback to now if parsing fails
+                                }
+                                string prompt = parts[1];
+                                string resp = parts[2];
+                                Entry entry = new Entry(prompt, resp) { _date = _date };
                                 _loadedEntries.Add(entry);
                             }
                         }
