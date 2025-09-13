@@ -60,19 +60,19 @@ class Program
                             var parts = line.Split('|');
                             if (parts.Length == 3)
                             {
-                                DateTime _date;
+                                DateTime date = DateTime.Now;
                                 // Try to parse using the ISO 8601 format (used when saving)
-                                if (DateTime.TryParseExact(parts[0], "o", null, System.Globalization.DateTimeStyles.None, out _date))
+                                if (DateTime.TryParseExact(parts[0], "o", null, System.Globalization.DateTimeStyles.None, out date))
                                 {
                                     // Successfully parsed with ISO 8601 format
                                 }
-                                else if (!DateTime.TryParse(parts[0], out _date))
+                                else if (!DateTime.TryParse(parts[0], out date))
                                 {
-                                    _date = DateTime.Now; // fallback to now if parsing fails
+                                    date = DateTime.Now; // fallback to now if parsing fails
                                 }
                                 string prompt = parts[1];
                                 string resp = parts[2];
-                                Entry entry = new Entry(prompt, resp) { _date = _date };
+                                Entry entry = new Entry(prompt, resp) { Date = date };
                                 _loadedEntries.Add(entry);
                             }
                         }
