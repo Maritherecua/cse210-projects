@@ -1,7 +1,7 @@
 // Program.cs is the main entry point for the Journal application.
 // Features: new entry, shows a random prompt (from a list created) and saves the responses with the date and the prompt
 // Displays the journal- iterates through all entries and displays them
-// Saves the journal to a file and loads it from a file. Prompt the user for the filename to load or save from.
+// Enhancesment-Saves the journal to a file and names it to load or save from without asking for user input.
 // this should replace any entries already in the journal
 // Uses classes: Journal, Entry, PromptProvider
 // Uses methods: AddEntry, DisplayEntries, SaveToFile, LoadFromFile, GetPrompts
