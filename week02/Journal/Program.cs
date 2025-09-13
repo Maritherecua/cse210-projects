@@ -37,10 +37,10 @@ class Program
             switch (choice)
             {
                 case "1":
-                    var prompts = promptProvider.GetPrompts();
+                    var _prompts = promptProvider.GetPrompts();
                     Random rand = new Random();
-                    int index = rand.Next(prompts.Count);
-                    string selectedPrompt = prompts[index];
+                    int index = rand.Next(_prompts.Count);
+                    string selectedPrompt = _prompts[index];
                     Console.WriteLine($"Prompt: {selectedPrompt}");
                     Console.Write("Your response: ");
                     string response = Console.ReadLine();
@@ -53,31 +53,31 @@ class Program
                     string loadFilename = "Journal.txt";
                     if (System.IO.File.Exists(loadFilename))
                     {
-                        var loadedEntries = new List<Entry>();
-                        var lines = System.IO.File.ReadAllLines(loadFilename);
-                        foreach (var line in lines)
+                        var _loadedEntries = new List<Entry>();
+                        var _lines = System.IO.File.ReadAllLines(loadFilename);
+                        foreach (var line in _lines)
                         {
-                            var parts = line.Split('|');
-                            if (parts.Length == 3)
+                            var _parts = line.Split('|');
+                            if (_parts.Length == 3)
                             {
                                 DateTime date;
                                 // Try to parse using the ISO 8601 format (used when saving)
-                                if (!DateTime.TryParseExact(parts[0], "o", null, System.Globalization.DateTimeStyles.None, out date))
+                                if (!DateTime.TryParseExact(_parts[0], "o", null, System.Globalization.DateTimeStyles.None, out date))
                                 {
                                     // Fallback to default parse if needed
-                                    if (!DateTime.TryParse(parts[0], out date))
+                                    if (!DateTime.TryParse(_parts[0], out date))
                                     {
                                         date = DateTime.Now; // fallback to now if parsing fails
                                     }
                                 }
-                                string prompt = parts[1];
-                                string resp = parts[2];
+                                string prompt = _parts[1];
+                                string resp = _parts[2];
                                 Entry entry = new Entry(prompt, resp) { Date = date };
-                                loadedEntries.Add(entry);
+                                _loadedEntries.Add(entry);
                             }
                         }
-                        string journalContent = string.Join(Environment.NewLine, loadedEntries.Select(e => $"{e.Date}|{e.Prompt}|{e.Response}"));
-                        journal.LoadEntries(loadedEntries);
+                        string journalContent = string.Join(Environment.NewLine, _loadedEntries.Select(e => $"{e.Date}|{e.Prompt}|{e.Response}"));
+                        journal.LoadEntries(_loadedEntries);
                         Console.WriteLine("Journal loaded successfully.");
                         Console.WriteLine(journalContent);
                     }
