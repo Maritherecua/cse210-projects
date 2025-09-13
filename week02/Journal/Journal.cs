@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+// Define the Entry class
+// (Removed duplicate Entry class definition to resolve conflict)
+
 public class Journal
 {
     private List<Entry> entries;
@@ -20,7 +23,6 @@ public class Journal
 
     public void DisplayEntries()
     {
-
         foreach (Entry entry in entries)
         {
             entry.DisplayEntry();
@@ -48,3 +50,5 @@ public class Journal
             }
         }
     }
+}
+
