@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -49,8 +50,7 @@ class Program
                     journal.DisplayEntries();
                     break;
                 case "3":
-                    Console.Write("Enter filename to load from: ");
-                    string loadFilename = Console.ReadLine();
+                    string loadFilename = "Journal.txt";
                     if (System.IO.File.Exists(loadFilename))
                     {
                         var loadedEntries = new List<Entry>();
@@ -60,29 +60,35 @@ class Program
                             var parts = line.Split('|');
                             if (parts.Length == 3)
                             {
-                                // Use ISO 8601 format for robust date parsing
-                                DateTime date = DateTime.ParseExact(parts[0], "o", null);
+                                DateTime date;
+                                // Try to parse using the ISO 8601 format (used when saving)
+                                if (!DateTime.TryParseExact(parts[0], "o", null, System.Globalization.DateTimeStyles.None, out date))
+                                {
+                                    // Fallback to default parse if needed
+                                    if (!DateTime.TryParse(parts[0], out date))
+                                    {
+                                        date = DateTime.Now; // fallback to now if parsing fails
+                                    }
+                                }
                                 string prompt = parts[1];
                                 string resp = parts[2];
                                 Entry entry = new Entry(prompt, resp) { Date = date };
                                 loadedEntries.Add(entry);
                             }
                         }
-                        //string filename = loadFilename + ".txt";
                         string journalContent = string.Join(Environment.NewLine, loadedEntries.Select(e => $"{e.Date}|{e.Prompt}|{e.Response}"));
                         journal.LoadEntries(loadedEntries);
                         Console.WriteLine("Journal loaded successfully.");
+                        Console.WriteLine(journalContent);
                     }
                     else
                     {
-                        Console.WriteLine("File not found.");
+                        Console.WriteLine("File 'Journal.txt' not found.");
                     }
                     break;
                 case "4":
-                    Console.Write("Enter filename to save to: ");
-                    string saveFilename = Console.ReadLine();
-                    journal.SaveToFile(saveFilename);
-                    Console.WriteLine("Journal saved successfully.");
+                    journal.SaveToFile("Journal.txt");
+                    Console.WriteLine("Journal saved to 'Journal.txt' successfully.");
                     break;
                 case "5":
                     exit = true;
