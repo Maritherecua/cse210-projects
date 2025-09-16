@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Fraction fraction1 = new Fraction();
+        Fraction fraction1 = new Fraction(1, 1);
         Console.WriteLine($"Fraction 1: {fraction1.GetFractionString()}");
         Console.WriteLine($"Decimal Value: {fraction1.GetDecimalValue()}");
 
