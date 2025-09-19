@@ -1,5 +1,7 @@
-//Enhancements made to Reference.cs and Program.cs to improve scripture loading and handling.
-//It loads scripture text from an external file, allowing for easy updates and additions to the scripture database without modifying the code.
+//Enhancements made to Reference.cs and Program.cs to improve scripture 
+//loading and handling.
+//It loads scripture text from an external file, allowing for easy
+//updates and additions to the scripture database without modifying the code.
 using System;
 using System.Collections.Generic;
 using System.IO;
