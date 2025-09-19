@@ -9,9 +9,8 @@ class Program
     static void Main(string[] args)
     {
         // Load scriptures from an external file
-        // Ensure the file path is relative to the executable location
-        string exeDir = AppDomain.CurrentDomain.BaseDirectory;
-        string filePath = Path.Combine(exeDir, "Scripture.txt");
+        // Use absolute path to Scripture.txt based on workspace structure
+        string filePath = "/Users/mariatarroyo/Desktop/cse210-projects/week03/ScriptureMemorizer/Scripture.txt";
         var scriptures = LoadScriptures(filePath);
         if (scriptures.Count == 0)
         {
@@ -54,7 +53,15 @@ class Program
             var parts = line.Split('|');
             if (parts.Length == 2)
             {
-                scriptures.Add(new Scripture(parts[0], parts[1]));
+                try
+                {
+                    scriptures.Add(new Scripture(parts[0].Trim(), parts[1].Trim()));
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine($"Warning: Invalid reference format skipped: {parts[0].Trim()}");
+                }
+                
             }
         }
         return scriptures;

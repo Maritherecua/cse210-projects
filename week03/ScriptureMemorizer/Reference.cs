@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 // and providing public methods to interact with that data.
 //provides multiple constructors for flexibility in creating Scripture objects,
 // including one that accepts a full reference string and another that accepts individual components (verse range, verse).
-// loads scripture text from an external file, allowing for easy updates and additions to the scripture database without modifying the code.
+
 class Reference
 {
     private string _book;
@@ -22,7 +22,8 @@ class Reference
     private string _verseRange;
 
     public Reference(string referenceStr)
-    {
+    {                                // Example formats: "John 3:16", "1 Nephi 3", "Alma 32:21-23"
+                                //Represents text as a sequence of UTF-16 code units.
         var match = Regex.Match(referenceStr, @"^(.*?)\s+(\d+)(?::(\d+(-\d+)?))?$");
         if (match.Success)
         {
