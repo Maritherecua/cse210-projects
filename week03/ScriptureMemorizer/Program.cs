@@ -9,7 +9,10 @@ class Program
     static void Main(string[] args)
     {
         // Load scriptures from an external file
-        var scriptures = LoadScriptures("Scripture.txt");
+        // Ensure the file path is relative to the executable location
+        string exeDir = AppDomain.CurrentDomain.BaseDirectory;
+        string filePath = Path.Combine(exeDir, "Scripture.txt");
+        var scriptures = LoadScriptures(filePath);
         if (scriptures.Count == 0)
         {
             Console.WriteLine("No scriptures found.");
