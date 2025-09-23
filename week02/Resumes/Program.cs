@@ -20,8 +20,8 @@ partial class Program
 
 
 
-        DisplayJobInfo(job1);
-        DisplayJobInfo(job2);
+        //DisplayJobInfo(job1);
+        //DisplayJobInfo(job2);
 
         Resume myResume = new Resume();
         myResume._name = "Vince Walker";
@@ -32,38 +32,38 @@ partial class Program
     }
     
     // Define the Resume class
-    public class Resume
-    {
-        public string _name;
-        public List<Job> _jobs = new List<Job>();
+    //public class Resume
+    //{
+        //public string _name;
+        //public List<Job> _jobs = new List<Job>();
     
-        public void Display()
-        {
-            Console.WriteLine($"Name: {_name}");
-            Console.WriteLine("Jobs:");
-            foreach (var job in _jobs)
-            {
-                job.Display();
-            }
-        }
-    }
+        //public void Display()
+        //{
+            //Console.WriteLine($"Name: {_name}");
+            //Console.WriteLine("Jobs:");
+            //foreach (var job in _jobs)
+            //{
+                //job.Display();
+            //}
+        //}
+   // }
     
     // Define the Job class
-    public class Job
-    {
-        public string _jobTitle;
-        public string _companyName;
-        public int _startYear;
-        public int _endYear;
+    //public class Job
+    //{
+        //public string _jobTitle;
+        //public string _companyName;
+        //public int _startYear;
+        //public int _endYear;
     
-        public void Display()
-        {
-            Console.WriteLine($"{_jobTitle} ({_companyName}) {_startYear}-{_endYear}");
-        }
-    }
+        //public void Display()
+        //{
+            //Console.WriteLine($"{_jobTitle} ({_companyName}) {_startYear}-{_endYear}");
+        //}
+    //}
 
-    static void DisplayJobInfo(Job job)
-    {
-        job.Display();
-    }
+    //static void DisplayJobInfo(Job job)
+    //{
+        //job.Display();
+    //}
 }
