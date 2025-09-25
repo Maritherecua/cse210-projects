@@ -1,6 +1,6 @@
 // This class represents a YouTube video.
 // It includes properties for the video's title, author,
-// length in seconds, and a list of comments.
+// length in seconds, and each video has a list of comments.
 // It also has methods to return the number of comments.
 // Additionally, it has a method to display the video's details.
 public class Video
