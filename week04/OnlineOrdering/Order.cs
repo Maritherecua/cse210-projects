@@ -7,6 +7,7 @@
 // the total cost of the order is the sum of the total cost of each product plus the shipping fee.
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace OnlineOrdering
 {

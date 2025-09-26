@@ -1,6 +1,6 @@
 //This program creates
 //a few (3-4) YouTube video objects, puts each of this in a list,
-// adds a list of 3-4 comments to them with the commenters' names, comment text, and number of likes.
+// adds a list of 3-4 comments to them with the commenters' names, comment text, and number of comments.
 // Iterates through the list of videos, displaying the details (title, author, length) of each video,
 // the number of comments (from the method), and then list out all of the comments for that video.
 //repeat for each video in the list.
@@ -13,25 +13,6 @@ using System.Collections.Generic;
 
 using System;
 
-class YouTubeVideo
-{
-    public string _title;
-    public string _author;
-    public int _lengthInSeconds;
-    public List<Comment> _comments = new List<Comment>();
-
-    public void Display()
-    {
-        Console.WriteLine($"Title: {_title}");
-        Console.WriteLine($"Author: {_author}");
-        Console.WriteLine($"Length (seconds): {_lengthInSeconds}");
-        Console.WriteLine($"Number of comments: {_comments.Count}");
-        foreach (var comment in _comments)
-        {
-            Console.WriteLine($"- {comment.CommenterName}: {comment.CommentText} (Comments: {comment.NumberOfComments})");
-        }
-    }
-}
 
 
 class Program
@@ -51,40 +32,30 @@ class Program
         Comment comment9 = new Comment("Ian", "Keep up the good work!", 6);
         Comment comment10 = new Comment("Jack", "Loved the examples.", 14);
 
-        // Create a YouTube video and add a list ofcomments to it
-        YouTubeVideo video1 = new YouTubeVideo();
-        video1._title = "Learning C#";
-        video1._author = "Tech Guru";
-        video1._lengthInSeconds = 300;
-        video1._comments.Add(comment1);
-        video1._comments.Add(comment2);
-        video1._comments.Add(comment3);
+        // Create Video objects and add comments
+        Video video1 = new Video("Learning C#", "Tech Guru", 300);
+        video1.Comments.Add(comment1);
+        video1.Comments.Add(comment6);
+        video1.Comments.Add(comment3);
 
-        YouTubeVideo video2 = new YouTubeVideo();
-        video2._title = "Advanced C# Programming";
-        video2._author = "Code Master";
-        video2._lengthInSeconds = 450;
-        video2._comments.Add(comment4);
-        video2._comments.Add(comment2);
-        video2._comments.Add(comment9);
-        
+        Video video2 = new Video("Advanced C# Programming", "Code Master", 450);
+        video2.Comments.Add(comment4);
+        video2.Comments.Add(comment2);
+        video2.Comments.Add(comment9);
 
-        YouTubeVideo video3 = new YouTubeVideo();
-        video3._title = "C# for Beginners";
-        video3._author = "Beginner's Hub";
-        video3._lengthInSeconds = 600;
-        video3._comments.Add(comment5);
-        video3._comments.Add(comment7);
-        video3._comments.Add(comment10);
+        Video video3 = new Video("C# for Beginners", "Beginner's Hub", 600);
+        video3.Comments.Add(comment5);
+        video3.Comments.Add(comment7);
+        video3.Comments.Add(comment10);
 
         // Create a list of videos
-        List<YouTubeVideo> videos = new List<YouTubeVideo> { video1, video2, video3 };
+        List<Video> videos = new List<Video> { video1, video2, video3 };
 
         // Display details for each video
         foreach (var video in videos)
         {
-            video.Display();
+            video.DisplayVideoDetails();
             Console.WriteLine(); // Add an empty line between videos
-        }   
+        }
     }
 }

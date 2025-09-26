@@ -1,4 +1,4 @@
-// This class represents a YouTube video.
+// This class represents a YouTube video. Stores a list of comments.
 // It includes properties for the video's title, author,
 // length in seconds, and each video has a list of comments.
 // It also has methods to return the number of comments.
