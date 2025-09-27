@@ -24,6 +24,7 @@ namespace OnlineOrdering
             _shippingAddress = shippingAddress;
         }
 
+
         public void AddProduct(Product product)
         {
             _products.Add(product);
@@ -65,5 +66,12 @@ namespace OnlineOrdering
         {
             return $"Shipping Label:\nCustomer: {_customerName}\nAddress: {_shippingAddress}";
         }
+
+        public void DisplayOrderDetails()
+        {
+            Console.WriteLine(GetPackingLabel());
+            Console.WriteLine(GetShippingLabel());
+            Console.WriteLine($"Total Cost: ${CalculateTotalCost():F2}");
+        }
     }
-}
+} 
