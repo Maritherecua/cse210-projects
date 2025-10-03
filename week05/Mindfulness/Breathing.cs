@@ -47,7 +47,9 @@ namespace Mindfulness
 
                 elapsed += 5;
             }
-            Console.WriteLine("Well done! You have completed the breathing exercise.");
+            Console.WriteLine("Great job! You have completed the Breathing Exercise for " + Duration + " minute(s).");
+            DisplayFinishingMessage();
+            ShowSpinner(3);
         }
 
         //public int BreathCount { get; set; }

@@ -86,10 +86,14 @@ namespace Mindfulness
                 {
                     _count++;
                 }
-            // Removed call to undefined GetListFormUser() method
+                // Removed call to undefined GetListFormUser() method
             }
 
             Console.WriteLine($"You listed {_count} items. Great job!");
+            Console.WriteLine($"You have completed the Listing Exercise for {Duration} minute(s).");
+            // If Listing inherits from Exercise, you can use DisplayFinishingMessage and ShowSpinner
+            // Otherwise, use a pause here:
+            System.Threading.Thread.Sleep(3000);
         }
 
 
