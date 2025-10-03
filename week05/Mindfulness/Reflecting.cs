@@ -46,12 +46,12 @@ namespace Mindfulness
                 duration = 30;
             }
             Console.WriteLine("\nGet ready...");
-            System.Threading.Thread.Sleep(2000);
+            ShowSpinner(3);
 
             // Show a random prompt
             string prompt = GetRandomPrompt();
             Console.WriteLine($"\nPrompt: {prompt}");
-            System.Threading.Thread.Sleep(2000);
+            ShowSpinner(3);
 
             int elapsed = 0;
             Random rand = new Random();
@@ -59,17 +59,12 @@ namespace Mindfulness
             {
                 string question = GetRandomQuestion();
                 Console.WriteLine($"\nReflect: {question}");
-                for (int i = 5; i > 0; i--)
-                {
-                    Console.Write($"{i} ");
-                    System.Threading.Thread.Sleep(1000);
-                }
-                Console.WriteLine();
+                ShowSpinner(5);
                 elapsed += 5;
             }
 
             Console.WriteLine("\nWell done! You have completed the Reflecting Exercise.");
-            System.Threading.Thread.Sleep(2000);
+            ShowSpinner(3);
         }
         private string GetRandomPrompt()
         {
