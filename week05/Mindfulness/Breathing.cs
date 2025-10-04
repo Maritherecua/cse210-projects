@@ -14,7 +14,7 @@ namespace Mindfulness
     {
         public Breathing()
         {
-            Name = "Breathing Exercise";
+            Name = "Breathing";
             Duration = 1; // default duration in minutes
             Type = "Breathing";
         }
@@ -30,7 +30,7 @@ namespace Mindfulness
                 for (int i = 5; i > 0; i--)
                 {
                     Console.Write(i + " ");
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(2000);
                 }
                 Console.WriteLine();
 
@@ -41,15 +41,15 @@ namespace Mindfulness
                 for (int i = 5; i > 0; i--)
                 {
                     Console.Write(i + " ");
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(2000);
                 }
                 Console.WriteLine();
 
                 elapsed += 5;
             }
-            Console.WriteLine("Great job! You have completed the Breathing Exercise for " + Duration + " minute(s).");
+            //Console.WriteLine("Great job! You have completed the Breathing Exercise for " + Duration + " minute(s).");
             DisplayFinishingMessage();
-            ShowSpinner(3);
+            ShowSpinner(5);
         }
 
         //public int BreathCount { get; set; }

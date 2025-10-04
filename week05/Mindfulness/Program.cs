@@ -1,6 +1,5 @@
-//This program provides three exercises (Breathing, Reflecting, and Listing), helping
+//This program provides four exercises (Breathing, Reflecting, Listing, and Stretching), helping
 //to work through them in stages using basic forms of delay(spinner or countdown).
-//It has a menu system to allow the user to choose an exercise
 //It has a common starting message providing the name of the exercise, a description (type) and asks for and sets the duration in seconds.
 //Each activity ends with a common ending message, pause and tells the activity completed with the lenght in time, then pauses before finishing.
 //Whenever it pauses shows an animation (spinner, or dots dispalyed on the screen).
@@ -21,8 +20,9 @@ class Program
             Console.WriteLine("1. Breathing Exercise");
             Console.WriteLine("2. Reflecting Exercise");
             Console.WriteLine("3. Listing Exercise");
-            Console.WriteLine("4. Quit");
-            Console.Write("Select an option (1-4): ");
+            Console.WriteLine("4. Stretching Exercise");
+            Console.WriteLine("5. Quit");
+            Console.Write("Select an option (1-5): ");
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -40,6 +40,10 @@ class Program
                     listing.Run();
                     break;
                 case "4":
+                    var stretching = new Mindfulness.Stretching();
+                    stretching.Run();
+                    break;
+                case "5":
                     running = false;
                     Console.WriteLine("Goodbye!");
                     break;

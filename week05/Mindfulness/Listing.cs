@@ -14,16 +14,10 @@ namespace Mindfulness
 {
     public class Listing
     {
-        //public int Count { get; set; }
         private int _count;
         private List<string> _prompts;
         public List<Exercise> Exercises { get; set; }
         public int Duration { get; set; }
-
-        //public Listing()
-        //{
-        //Exercises = new List<Exercise>();
-        //}
 
         public Listing()
         {
@@ -41,7 +35,8 @@ namespace Mindfulness
                 "What are some things you are looking forward to?",
                 "Who are some people who have made a positive impact on your life?",
                 "When have you felt the most at peace?",
-                "When have you felt the most loved?"
+                "When have you felt the most loved?",
+                "What is something new you learned recently?"
             };
         }
         public void GetRandomPrompt()
@@ -86,7 +81,7 @@ namespace Mindfulness
                 {
                     _count++;
                 }
-                // Removed call to undefined GetListFormUser() method
+            
             }
 
             Console.WriteLine($"You listed {_count} items. Great job!");
