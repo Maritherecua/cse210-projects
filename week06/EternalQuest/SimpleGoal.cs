@@ -5,6 +5,7 @@ public class SimpleGoal : Goal
 {
     public SimpleGoal(string description, int points) : base(description, points)
     {
+        // Simple goals are incomplete by default
     }
 
     public override void DisplayGoal()
