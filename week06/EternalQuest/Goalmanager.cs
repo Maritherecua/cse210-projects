@@ -36,8 +36,8 @@ public class GoalManager
                     ListGoalDetails();
                     break;
                 case "3":
-                        RecordEvent();
-                        break;
+                    RecordEvent();
+                    break;
                 case "4":
                     running = false;
                     Console.WriteLine("Goodbye!");
@@ -98,7 +98,28 @@ public class GoalManager
                 newGoal = new EternalGoal(description, points);
                 break;
             case "3":
-                newGoal = new ChecklistGoal(description, points, 5, 0); // Example with target count 5
+                Console.Write("Enter the number of tasks to complete for bonus: ");
+                int target = 0;
+                if (!int.TryParse(Console.ReadLine(), out target) || target <= 0)
+                {
+                    Console.WriteLine("Invalid input. Setting target to 3.");
+                    target = 3;
+                }
+                Console.Write("Enter bonus points for completing all tasks: ");
+                int bonusPoints = 0;
+                if (!int.TryParse(Console.ReadLine(), out bonusPoints))
+                {
+                    Console.WriteLine("Invalid input. Setting bonus points to 10.");
+                    bonusPoints = 10;
+                }
+                var checklistGoal = new ChecklistGoal(description, points, target, bonusPoints);
+                for (int i = 0; i < target; i++)
+                {
+                    Console.Write($"Enter description for task {i + 1}: ");
+                    string taskDesc = Console.ReadLine();
+                    checklistGoal.AddTask(taskDesc);
+                }
+                newGoal = checklistGoal;
                 break;
         }
 
