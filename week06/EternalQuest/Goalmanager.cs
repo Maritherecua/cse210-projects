@@ -7,15 +7,22 @@ public class GoalManager
 {
     private List<Goal> _goals;
     private int _score;
+    private List<Achievement> _achievements;
 
     public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
+        _achievements = new List<Achievement>
+        {
+            new Achievement("Goal Getter", "Complete 5 goals."),
+            new Achievement("Point Collector", "Reach 100 points.")
+        };
     }
 
     public void Start()
     {
+        CheckAchievements();
         bool running = true;
         while (running)
         {
@@ -154,10 +161,33 @@ public class GoalManager
             }
             _score += pointsEarned;
             Console.WriteLine($"Event recorded for goal: {selectedGoal.Description}. Points earned: {pointsEarned}. Total score: {_score}");
+            CheckAchievements();
         }
         else
         {
             Console.WriteLine("Invalid goal number. Please try again.");
+        }
+    }
+
+    private void CheckAchievements()
+    {
+        // Unlock "Goal Getter" for completing 5 goals
+        int completedGoals = 0;
+        foreach (var goal in _goals)
+        {
+            if (goal.IsComplete()) completedGoals++;
+        }
+        var goalGetter = _achievements.Find(a => a.Name == "Goal Getter");
+        if (goalGetter != null && !goalGetter.IsUnlocked && completedGoals >= 5)
+        {
+            goalGetter.Unlock();
+        }
+
+        // Unlock "Point Collector" for reaching 100 points
+        var pointCollector = _achievements.Find(a => a.Name == "Point Collector");
+        if (pointCollector != null && !pointCollector.IsUnlocked && _score >= 100)
+        {
+            pointCollector.Unlock();
         }
     }
 
