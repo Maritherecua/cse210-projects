@@ -9,76 +9,89 @@ public class ChecklistGoal : Goal
     private int _target;
     private int _bonusPoints;
 
-    public ChecklistGoal(string description, int points, int target, int bonusPoints) : base(description, points)
+    public int GetTaskCount()
     {
-        _tasks = new List<string>();
-        _taskCompletionStatus = new List<bool>();
-        _target = target;
-        _bonusPoints = bonusPoints;
+        return _tasks.Count;
     }
 
-    public void AddTask(string task)
+    public void MarkTaskComplete(int index)
     {
-        _tasks.Add(task);
-        _taskCompletionStatus.Add(false);
-    }
-
-    public string GetProgress()
-    {
-        int completed = 0;
-        foreach (bool done in _taskCompletionStatus)
+        if (index >= 0 && index < _taskCompletionStatus.Count)
         {
-            if (done) completed++;
+            _taskCompletionStatus[index] = true;
         }
-        double percent = _tasks.Count > 0 ? (double)completed / _tasks.Count * 100 : 0;
-        return $"Progress: {completed}/{_tasks.Count} tasks completed ({percent:F1}%)";
     }
 
-    public override void DisplayGoal()
+public ChecklistGoal(string description, int points, int target, int bonusPoints) : base(description, points)
+{
+    _tasks = new List<string>();
+    _taskCompletionStatus = new List<bool>();
+    _target = target;
+    _bonusPoints = bonusPoints;
+}
+
+public void AddTask(string task)
+{
+    _tasks.Add(task);
+    _taskCompletionStatus.Add(false);
+}
+
+public string GetProgress()
+{
+    int completed = 0;
+    foreach (bool done in _taskCompletionStatus)
     {
-        Console.WriteLine($"[ ] {Description} (Points: {Points})");
-        for (int i = 0; i < _tasks.Count; i++)
+        if (done) completed++;
+    }
+    double percent = _tasks.Count > 0 ? (double)completed / _tasks.Count * 100 : 0;
+    return $"Progress: {completed}/{_tasks.Count} tasks completed ({percent:F1}%)";
+}
+
+public override void DisplayGoal()
+{
+    Console.WriteLine($"[ ] {Description} (Points: {Points})");
+    for (int i = 0; i < _tasks.Count; i++)
+    {
+        string status = _taskCompletionStatus[i] ? "[X]" : "[ ]";
+        Console.WriteLine($"  {status} {_tasks[i]}");
+    }
+    Console.WriteLine(GetProgress());
+}
+
+public override int RecordEvent()
+{
+    int totalPoints = 0;
+    for (int i = 0; i < _tasks.Count; i++)
+    {
+        if (_taskCompletionStatus[i])
         {
-            string status = _taskCompletionStatus[i] ? "[X]" : "[ ]";
-            Console.WriteLine($"  {status} {_tasks[i]}");
+            totalPoints += Points;
         }
-        Console.WriteLine(GetProgress());
     }
-
-    public override int RecordEvent()
+    // Award bonus points if all tasks are complete
+    if (IsComplete())
     {
-        int totalPoints = 0;
-        for (int i = 0; i < _tasks.Count; i++)
-        {
-            if (_taskCompletionStatus[i])
-            {
-                totalPoints += Points;
-            }
-        }
-        // Award bonus points if all tasks are complete
-        if (IsComplete())
-        {
-            totalPoints += _bonusPoints;
-        }
-        return totalPoints;
+        totalPoints += _bonusPoints;
     }
+    return totalPoints;
+}
 
-    public override bool IsComplete()
+public override bool IsComplete()
+{
+    foreach (bool isComplete in _taskCompletionStatus)
     {
-        foreach (bool isComplete in _taskCompletionStatus)
-        {
-            if (!isComplete) return false;
-        }
-        return true;
+        if (!isComplete) return false;
     }
+    return true;
+}
 
-    public override string GetDetails()
-    {
-        return $"Description: {Description}, Points: {Points}, Tasks: {string.Join(", ", _tasks)}";
-    }
+public override string GetDetails()
+{
+    return $"Description: {Description}, Points: {Points}, Tasks: {string.Join(", ", _tasks)}";
+}
 
-    public override string GetStringRepresentation()
-    {
-        return $"ChecklistGoal:{Description}:{Points}:{string.Join(";", _tasks)}";
-    }
+public override string GetStringRepresentation()
+{
+    return $"ChecklistGoal:{Description}:{Points}:{string.Join(";", _tasks)}";
+}
 }

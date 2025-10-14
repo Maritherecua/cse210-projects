@@ -129,12 +129,29 @@ public class GoalManager
 
     public void RecordEvent()
     {
-        // Logic to record an event for a goal
         Console.Write("Enter the number of the goal to record an event for: ");
         if (int.TryParse(Console.ReadLine(), out int goalIndex) && goalIndex > 0 && goalIndex <= _goals.Count)
         {
             Goal selectedGoal = _goals[goalIndex - 1];
-            int pointsEarned = selectedGoal.RecordEvent();
+            int pointsEarned = 0;
+            if (selectedGoal is ChecklistGoal checklistGoal)
+            {
+                checklistGoal.DisplayGoal();
+                Console.Write("Enter the number of the task to mark as complete: ");
+                if (int.TryParse(Console.ReadLine(), out int taskIndex) && taskIndex > 0 && taskIndex <= checklistGoal.GetTaskCount())
+                {
+                    checklistGoal.MarkTaskComplete(taskIndex - 1);
+                    pointsEarned = checklistGoal.RecordEvent();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid task number. No task marked complete.");
+                }
+            }
+            else
+            {
+                pointsEarned = selectedGoal.RecordEvent();
+            }
             _score += pointsEarned;
             Console.WriteLine($"Event recorded for goal: {selectedGoal.Description}. Points earned: {pointsEarned}. Total score: {_score}");
         }
