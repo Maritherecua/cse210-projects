@@ -3,24 +3,33 @@ using System;
 
 public class SimpleGoal : Goal
 {
+
+    private bool _completed;
+
     public SimpleGoal(string description, int points) : base(description, points)
     {
-        // Simple goals are incomplete by default
+        _completed = false;
     }
 
     public override void DisplayGoal()
     {
-        Console.WriteLine($"[ ] {Description} (Points: {Points})");
+        string status = _completed ? "[X]" : "[ ]";
+        Console.WriteLine($"{status} {Description} (Points: {Points})");
     }
 
     public override int RecordEvent()
     {
-        return Points;
+        if (!_completed)
+        {
+            _completed = true;
+            return Points;
+        }
+        return 0;
     }
 
     public override bool IsComplete()
     {
-        return false;
+        return _completed;
     }
 
     public override string GetDetails()
