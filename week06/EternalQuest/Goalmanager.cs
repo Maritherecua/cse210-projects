@@ -30,8 +30,9 @@ public class GoalManager
             Console.WriteLine("1. Create Goal");
             Console.WriteLine("2. View Goals");
             Console.WriteLine("3. Record Event");
-            Console.WriteLine("4. Quit");
-            Console.Write("Select an option (1-4): ");
+            Console.WriteLine("4. View Achievements");
+            Console.WriteLine("5. Quit");
+            Console.Write("Select an option (1-5): ");
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -46,6 +47,9 @@ public class GoalManager
                     RecordEvent();
                     break;
                 case "4":
+                    DisplayAchievements();
+                    break;
+                case "5":
                     running = false;
                     Console.WriteLine("Goodbye!");
                     break;
@@ -53,6 +57,16 @@ public class GoalManager
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
             }
+        }
+    }
+
+    public void DisplayAchievements()
+    {
+        Console.WriteLine("\nAchievements:");
+        foreach (var achievement in _achievements)
+        {
+            string status = achievement.IsUnlocked ? "Unlocked" : "Locked";
+            Console.WriteLine($"- {achievement.Name}: {achievement.Description} [{status}]");
         }
     }
 
